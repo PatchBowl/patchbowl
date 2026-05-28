@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Patchbowl — Patches for the messiest parts of building with AI</title>
+  <meta name="description" content="Self-host one control plane for all your MCP servers. Install once, sync everywhere across Claude, Cursor, Cline, Windsurf, and Zed." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Patchbowl — Patches for the messiest parts of building with AI" />
+  <meta property="og:description" content="Self-host one control plane for all your MCP servers. Install once, sync everywhere." />
+  <meta property="og:url" content="https://patchbowl.dev" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://patchbowl.dev/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (inline SVG bowl emoji — replace with branded SVG later) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%A3%3C/text%3E%3C/svg%3E" />
+
+  <!-- Tailwind via Play CDN (fine for v0; move to a build step before adding multiple pages) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          colors: {
+            bowl: {
+              50: '#fff7ed',
+              200: '#fed7aa',
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    html { background: #0a0a0a; }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .glow {
+      background: radial-gradient(closest-side, rgba(249,115,22,0.18), transparent 70%);
+    }
+  </style>
+</head>
+
+<body class="bg-neutral-950 text-neutral-100 font-sans antialiased">
+
+  <!-- Nav -->
+  <header class="border-b border-white/5">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 font-semibold tracking-tight">
+        <span class="text-2xl leading-none">🥣</span>
+        <span>Patchbowl</span>
+        <span class="text-[10px] uppercase tracking-widest text-bowl-400 border border-bowl-400/40 rounded px-1.5 py-0.5 ml-1">pre-alpha</span>
+      </a>
+      <nav class="flex items-center gap-5 text-sm text-neutral-400">
+        <a href="https://github.com/PatchBowl/patchbowl" class="hover:text-white transition">GitHub</a>
+        <a href="#roadmap" class="hover:text-white transition hidden sm:inline">Roadmap</a>
+        <a href="https://github.com/PatchBowl/patchbowl" class="inline-flex items-center gap-1.5 bg-white text-black hover:bg-neutral-200 transition rounded-md px-3 py-1.5 text-sm font-medium">
+          ⭐ Star
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-50"></div>
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[800px] glow pointer-events-none"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6 pt-20 pb-24 text-center">
+      <div class="inline-flex items-center gap-2 text-xs text-bowl-200 bg-bowl-500/10 border border-bowl-500/20 rounded-full px-3 py-1 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-bowl-400 animate-pulse"></span>
+        Building in the open · v0.0.1 lands soon
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
+        Patches for the messiest parts<br/>
+        of building with <span class="text-bowl-400">AI</span>.
+      </h1>
+
+      <p class="mt-6 text-lg sm:text-xl text-neutral-400 max-w-2xl mx-auto">
+        Self-host one control plane for all your MCP servers.
+        Install once, sync everywhere — never edit a config file again.
+      </p>
+
+      <!-- Email capture -->
+      <form
+        action="https://buttondown.email/api/emails/embed-subscribe/patchbowl"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.email/patchbowl', 'popupwindow')"
+        class="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="you@dev.email"
+          class="flex-1 bg-white/5 border border-white/10 rounded-md px-4 py-3 text-sm placeholder:text-neutral-500 focus:outline-none focus:border-bowl-400 focus:ring-1 focus:ring-bowl-400" />
+        <button type="submit" class="bg-bowl-500 hover:bg-bowl-600 transition text-black font-semibold rounded-md px-5 py-3 text-sm">
+          Get launch alert
+        </button>
+      </form>
+      <p class="mt-3 text-xs text-neutral-500">No spam. One email when v0.1 ships. Unsubscribe instantly.</p>
+
+      <div class="mt-12 flex items-center justify-center gap-6 text-xs text-neutral-500">
+        <span>🔓 AGPL-3.0</span>
+        <span>·</span>
+        <span>🏠 Self-host</span>
+        <span>·</span>
+        <span>🔐 Secrets stay yours</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- The problem -->
+  <section class="border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-6 py-20">
+      <p class="text-xs uppercase tracking-widest text-bowl-400 mb-3">The problem</p>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6">Your MCP setup is a mess.</h2>
+      <p class="text-neutral-400 leading-relaxed">
+        You're building with AI. You use Claude Desktop <em>and</em> Cursor <em>and</em> Cline.
+        Every one speaks MCP. Every one has its own JSON config in its own weird location.
+        Every server you install means editing all of them by hand, pasting API keys in plaintext, and praying.
+      </p>
+      <p class="text-neutral-400 leading-relaxed mt-4">
+        When something breaks, there are no logs. When you upgrade, nothing tells you.
+        When a teammate joins, you send them a Notion doc.
+      </p>
+      <p class="text-neutral-200 leading-relaxed mt-4 font-medium">
+        This is the patchbowl. The mess where patches go to die.
+      </p>
+    </div>
+  </section>
+
+  <!-- What it does -->
+  <section class="border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <p class="text-xs uppercase tracking-widest text-bowl-400 mb-3 text-center">What Patchbowl does</p>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-12 text-center">One bowl. Every client. Yours.</h2>
+
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="rounded-xl border border-white/5 bg-white/[0.02] p-6">
+          <div class="text-2xl mb-3">🔁</div>
+          <h3 class="font-semibold mb-1.5">Install once, sync everywhere</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Pick a server from the catalog. Patchbowl writes the config into Claude Desktop, Cursor, Cline, Windsurf, and Zed.</p>
+        </div>
+
+        <div class="rounded-xl border border-white/5 bg-white/[0.02] p-6">
+          <div class="text-2xl mb-3">🔐</div>
+          <h3 class="font-semibold mb-1.5">Secrets that aren't plaintext</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">API keys live encrypted in Patchbowl. Injected at runtime. Never written into your client configs.</p>
+        </div>
+
+        <div class="rounded-xl border border-white/5 bg-white/[0.02] p-6">
+          <div class="text-2xl mb-3">📡</div>
+          <h3 class="font-semibold mb-1.5">Health you can see</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Know which servers are running, which crashed, and why. Logs in one place.</p>
+        </div>
+
+        <div class="rounded-xl border border-white/5 bg-white/[0.02] p-6">
+          <div class="text-2xl mb-3">📦</div>
+          <h3 class="font-semibold mb-1.5">A catalog you can trust</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Curated. Community-PR'd. Version-pinned. Not random GitHub repos.</p>
+        </div>
+
+        <div class="rounded-xl border border-white/5 bg-white/[0.02] p-6 sm:col-span-2">
+          <div class="text-2xl mb-3">🏠</div>
+          <h3 class="font-semibold mb-1.5">Your machine, your rules</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Single binary or Docker Compose. Runs on your laptop, your homelab, or a <a href="https://github.com/PatchBowl/patchbowl/blob/main/docs/deploy/digitalocean.md" class="text-bowl-400 hover:underline">$6/mo droplet</a>. No telemetry. No account required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram -->
+  <section class="border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-6 py-20">
+      <p class="text-xs uppercase tracking-widest text-bowl-400 mb-3 text-center">How it works</p>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-10 text-center">Patchbowl is the source of truth.<br/>Your clients are read replicas.</h2>
+
+      <pre class="text-xs sm:text-sm font-mono bg-black/40 border border-white/5 rounded-lg p-6 overflow-x-auto text-neutral-300 leading-relaxed">
+                  ┌──────────────────┐
+                  │    Patchbowl     │
+                  │  (your droplet   │
+                  │   or laptop)     │
+                  └────────┬─────────┘
+                           │ writes configs
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+ ┌───────────────┐ ┌──────────────┐ ┌──────────────┐
+ │ Claude Desktop│ │    Cursor    │ │ Cline / Zed  │
+ │   (config)    │ │   (config)   │ │  (configs)   │
+ └───────────────┘ └──────────────┘ └──────────────┘</pre>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section id="roadmap" class="border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-6 py-20">
+      <p class="text-xs uppercase tracking-widest text-bowl-400 mb-3">Roadmap</p>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-8">Beyond MCP.</h2>
+      <ul class="space-y-3 text-neutral-300">
+        <li class="flex gap-3"><span class="text-bowl-400">v0.1</span>MCP catalog, multi-client sync, encrypted secrets, self-host on DigitalOcean</li>
+        <li class="flex gap-3"><span class="text-bowl-400">v0.2</span>Team mode — share a Patchbowl with your team, RBAC for secrets</li>
+        <li class="flex gap-3"><span class="text-bowl-400">v0.3</span>Server audit — automated security scoring per catalog entry</li>
+        <li class="flex gap-3"><span class="text-bowl-400">v0.4</span>Custom server builder — wrap any API as an MCP server from the UI</li>
+        <li class="flex gap-3"><span class="text-bowl-400">v1.0+</span>More patches — prompt packs, agent skills, model configs</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="border-t border-white/5">
+    <div class="max-w-2xl mx-auto px-6 py-20 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Be there when v0.1 drops.</h2>
+      <p class="mt-3 text-neutral-400">We're shipping every week. The launch list gets first access.</p>
+
+      <form
+        action="https://buttondown.email/api/emails/embed-subscribe/patchbowl"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.email/patchbowl', 'popupwindow')"
+        class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="you@dev.email"
+          class="flex-1 bg-white/5 border border-white/10 rounded-md px-4 py-3 text-sm placeholder:text-neutral-500 focus:outline-none focus:border-bowl-400 focus:ring-1 focus:ring-bowl-400" />
+        <button type="submit" class="bg-bowl-500 hover:bg-bowl-600 transition text-black font-semibold rounded-md px-5 py-3 text-sm">
+          Subscribe
+        </button>
+      </form>
+
+      <div class="mt-10 flex items-center justify-center gap-5 text-sm text-neutral-500">
+        <a href="https://github.com/PatchBowl/patchbowl" class="hover:text-white transition">GitHub</a>
+        <span>·</span>
+        <a href="https://github.com/PatchBowl/patchbowl/discussions" class="hover:text-white transition">Discussions</a>
+        <span>·</span>
+        <a href="https://github.com/PatchBowl/patchbowl/blob/main/docs/deploy/digitalocean.md" class="hover:text-white transition">Self-host</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
+      <div class="flex items-center gap-2">
+        <span class="text-base">🥣</span>
+        <span>Patchbowl · AGPL-3.0</span>
+      </div>
+      <div>Built in the open.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
