@@ -1,0 +1,55 @@
+name: 📦 Add an MCP server to the catalog
+description: Request that a specific MCP server be added to the Patchbowl catalog.
+title: "[catalog] Add "
+labels: ["catalog", "good-first-issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want to add a server? You can either file this issue *or* skip straight to a PR — adding a server is one YAML file. See [`catalog/README.md`](../../tree/main/catalog) for the schema.
+
+  - type: input
+    id: server-name
+    attributes:
+      label: Server name
+      placeholder: "github-mcp-server"
+    validations:
+      required: true
+
+  - type: input
+    id: repo
+    attributes:
+      label: Source repo or package
+      placeholder: "https://github.com/owner/repo  OR  @scope/package"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-it-does
+    attributes:
+      label: What does this server do?
+      placeholder: "Exposes GitHub repo, PR, and issue operations to MCP clients."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: maintained
+    attributes:
+      label: Is it actively maintained?
+      options:
+        - "Yes — recent commits, responsive maintainer"
+        - "Mostly — last commit within ~3 months"
+        - "Unclear / abandoned"
+        - "I am the maintainer"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Quick checks
+      options:
+        - label: This server isn't already in `catalog/`
+          required: true
+        - label: It speaks MCP (Model Context Protocol), not some other protocol
+          required: true

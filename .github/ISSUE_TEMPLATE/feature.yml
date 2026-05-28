@@ -1,0 +1,52 @@
+name: ✨ Feature request
+description: Suggest a new feature or improvement.
+title: "[feature] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. The best feature requests describe a *problem* clearly, then suggest a solution.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: What's painful today that this feature would fix?
+      placeholder: "When I install a server with secrets, I have to manually copy them into..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: What would you like to see?
+      placeholder: "Patchbowl could prompt for secrets at install time and store them encrypted."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+      placeholder: "I tried using 1Password CLI but..."
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      description: Roughly how big is this?
+      options:
+        - Small (a few hours)
+        - Medium (a few days)
+        - Large (architectural change)
+        - Not sure
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Would you be open to contributing this?
+      options:
+        - label: I'd be willing to take a stab at the PR (with guidance)
+        - label: I'd help test it
+        - label: Just suggesting; not able to contribute right now

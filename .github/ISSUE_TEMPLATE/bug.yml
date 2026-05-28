@@ -1,0 +1,65 @@
+name: 🐛 Bug report
+description: Something is broken or doesn't work as documented.
+title: "[bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. The more specific you are, the faster we can fix it.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong?
+      placeholder: "I tried to install the GitHub MCP server and Patchbowl crashed with..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: "The server should appear in my Claude Desktop config."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Smallest possible recipe to trigger this.
+      placeholder: |
+        1. Run `docker run ...`
+        2. Open localhost:3000
+        3. Click "Install" on the GitHub server
+        4. See error
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Patchbowl version
+      placeholder: "0.1.0 or commit SHA"
+
+  - type: dropdown
+    id: client
+    attributes:
+      label: Which AI client(s) are you syncing to?
+      multiple: true
+      options:
+        - Claude Desktop
+        - Cursor
+        - Cline
+        - Windsurf
+        - Zed
+        - Other (describe below)
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots
+      description: Paste any relevant output. Code blocks (```) help.
+      render: shell

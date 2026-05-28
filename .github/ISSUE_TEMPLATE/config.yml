@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discord
+    url: https://discord.gg/patchbowl
+    about: For questions, ideas, and real-time chat. (Replace with real invite once Discord is live.)
+  - name: 📖 Docs
+    url: https://github.com/patchbowl/patchbowl#readme
+    about: Check the README and docs/ before opening an issue.

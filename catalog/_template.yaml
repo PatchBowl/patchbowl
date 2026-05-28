@@ -1,0 +1,28 @@
+# Copy this file to catalog/<your-server-name>.yaml and fill it in.
+# See catalog/README.md for the full schema and category list.
+
+id: example-server
+name: Example
+description: >
+  One or two sentences describing what this MCP server does, in plain English.
+category: dev-tools
+
+source:
+  type: npm                          # npm | pypi | docker | github
+  package: "@example/mcp-server"
+
+runtime:
+  command: npx
+  args: ["-y", "@example/mcp-server"]
+
+license: MIT
+homepage: https://github.com/example/mcp-server
+maintainer: "@example"
+
+secrets:
+  - key: EXAMPLE_API_KEY
+    description: "API key from example.com/settings"
+    required: true
+
+tags: ["example"]
+verified: false
